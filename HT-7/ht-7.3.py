@@ -24,7 +24,6 @@ def start_command(message):
 @bot.message_handler(commands=['stop'])
 def stop(message):
     bot.send_message(message.chat.id,'Я остановлен =(', reply_markup=markup2)
-    exit(0)
 
 def init_storage(user_id):
     storage[user_id] = dict(attempt=None, random_digit=None)
@@ -73,6 +72,9 @@ def process_digit_step(message):
     attempt = get_data_storage(message.chat.id)["attempt"]
     random_digit = get_data_storage(message.chat.id)["random_digit"]
 
+    if command == '/stop':
+        break
+    
     if int(user_digit) == random_digit:
         bot.send_message(message.chat.id, f'Ура! Ты угадал число! Это была цифра: {random_digit}')
         init_storage(message.chat.id) ### Очищает значения из хранилище
