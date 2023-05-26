@@ -17,14 +17,14 @@ def start_command(message):
     bot.send_message(  
         message.chat.id,  
         'Привет! Я играю в игру Угадай число! Я загадываю число от 1 до 1000, а ты угадай за 999 попыток!.\n' +  
-        'Чтобы остановить меня, введи /end.\n' +  
+        'Чтобы остановить меня, введи /stop.\n' +  
         'To get help press /help.'  
   )
     
 @bot.message_handler(commands=['stop'])
 def stop(message):
     bot.send_message(message.chat.id,'Я остановлен =(', reply_markup=markup2)
-
+    exit(0)
 
 def init_storage(user_id):
     storage[user_id] = dict(attempt=None, random_digit=None)
