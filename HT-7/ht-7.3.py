@@ -33,7 +33,7 @@ def command_text_dela(m):
 def digitgames(message):
     init_storage(message.chat.id) ### Инициализирую хранилище
 
-    attempt = 5
+    attempt = 999
     set_data_storage(message.chat.id, "attempt", attempt)
 
     bot.send_message(message.chat.id, f'Игра "угадай число"!\nКоличество попыток: {attempt}')
