@@ -12,13 +12,19 @@ telebot.logger.setLevel(logging.INFO)
 
 storage = dict()
 
-@bot.message_handler(commands=['start'])
-def start(message):
+@bot.message_handler(commands=['start'])  
+def start_command(message):  
+    bot.send_message(  
+        message.chat.id,  
+        'Привет! Я играю в игру Угадай число! Я загадываю число от 1 до 1000, а ты угадай за 999 попыток!.\n' +  
+        'Чтобы остановить меня, введи /end.\n' +  
+        'To get help press /help.'  
+  )
+    
+@bot.message_handler(commands=['stop'])
+def stop(message):
+    bot.send_message(message.chat.id,'Я остановлен =(', reply_markup=markup2)
 
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton("👋 Поздороваться")
-    markup.add(btn1)
-    bot.send_message(message.from_user.id, "👋 Привет! Я твой бот-помошник!", reply_markup=markup)
 
 def init_storage(user_id):
     storage[user_id] = dict(attempt=None, random_digit=None)
