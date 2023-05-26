@@ -38,13 +38,13 @@ def digitgames(message):
 
     bot.send_message(message.chat.id, f'Игра "угадай число"!\nКоличество попыток: {attempt}')
 
-    random_digit=random.randint(1, 10)
+    random_digit=random.randint(1, 1000)
     print(random_digit)
 
     set_data_storage(message.chat.id, "random_digit", random_digit)
     print(get_data_storage(message.chat.id))
  
-    bot.send_message(message.chat.id, 'Готово! Загадано число от 1 до 10!')
+    bot.send_message(message.chat.id, 'Готово! Загадано число от 1 до 1000!')
     bot.send_message(message.chat.id, 'Введите число')
     bot.register_next_step_handler(message, process_digit_step)
 
